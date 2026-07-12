@@ -908,10 +908,6 @@ void CanvasItem::draw_rect(const Rect2 &p_rect, const Color &p_color, bool p_fil
 	Rect2 rect = p_rect.abs();
 
 	if (p_filled) {
-		if (p_width != -1.0) {
-			WARN_PRINT("The draw_rect() \"width\" argument has no effect when \"filled\" is \"true\".");
-		}
-
 		RenderingServer::get_singleton()->canvas_item_add_rect(canvas_item, rect, p_color, p_antialiased);
 	} else if (p_width >= rect.size.width || p_width >= rect.size.height) {
 		RenderingServer::get_singleton()->canvas_item_add_rect(canvas_item, rect.grow(0.5f * p_width), p_color, p_antialiased);
@@ -935,10 +931,6 @@ void CanvasItem::draw_ellipse(const Point2 &p_pos, real_t p_major, real_t p_mino
 	ERR_DRAW_GUARD;
 
 	if (p_filled) {
-		if (p_width != -1.0) {
-			WARN_PRINT("The \"width\" argument has no effect when \"filled\" is \"true\".");
-		}
-
 		RenderingServer::get_singleton()->canvas_item_add_ellipse(canvas_item, p_pos, p_major, p_minor, p_color, p_antialiased);
 	} else if (p_width >= 2.0 * MAX(p_major, p_minor)) {
 		RenderingServer::get_singleton()->canvas_item_add_ellipse(canvas_item, p_pos, p_major + 0.5 * p_width, p_minor + 0.5 * p_width, p_color, p_antialiased);
